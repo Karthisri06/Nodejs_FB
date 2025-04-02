@@ -6,6 +6,7 @@ import { AppDataSource } from "../data-source";
 
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
     const { name, email, password } = req.body;
+    console.log("Registered")
 
     try {
         const userRepository =AppDataSource. getRepository(User);
@@ -42,8 +43,9 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
 
 export const loginUser = async (req: Request, res: Response):Promise<void> => {
     const { email, password } = req.body;
-
+    console.log('hi');
     try {
+      console.log(req.body)
         const userRepository = AppDataSource.getRepository(User);
         const user = await userRepository.findOne({ where: { email } });
         if (!user) {

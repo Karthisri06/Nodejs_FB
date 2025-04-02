@@ -18,7 +18,7 @@ const AdminDashboard = () => {
       const token = localStorage.getItem("token");
       if (!token) return;
 
-      const response = await axios.get("http://localhost:5703/auth/users", {
+      const response = await axios.get("http://localhost:6000/auth/users", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
       if (newUsername) updateData.name = newUsername;
       if (newEmail) updateData.email = newEmail;
 
-      await axios.put(`http://localhost:5703/auth/update/${userId}`, updateData, {
+      await axios.put(`http://localhost:6000/auth/edit/${userId}`, updateData, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -55,15 +55,17 @@ const AdminDashboard = () => {
       setNewUsername("");
       setNewEmail("");
       setEditUserId(null);
-    } catch (error: unknown) {
-      setError("Error updating user.");
+    } catch (error : unknown) {
+      console.error("Error during request:",error);
+      let errormessage="Something went wrong. Please try again.";
+      console.log(errormessage);
     }
   };
 
   const handleDeleteUser = async (userId: number) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5703/auth/delete/${userId}`, {
+      await axios.delete(`http://localhost:6000/auth/delete/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -133,6 +135,9 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+
+
+
 
 
 
