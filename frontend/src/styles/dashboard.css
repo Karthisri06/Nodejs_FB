@@ -1,0 +1,54 @@
+
+
+.container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  button {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button.edit {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  button.delete {
+    background-color: #FF0000;
+    color: white;
+  }
+  
+  input {
+    margin: 5px;
+    padding: 8px;
+  }
+  

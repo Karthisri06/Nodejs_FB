@@ -1,0 +1,93 @@
+
+body {
+    background-image: url('https://img.freepik.com/premium-vector/soft-watercolor-painted-background_278222-7095.jpg?semt=ais_hybrid');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family:monospace;
+    margin: 0;
+    padding: 70px 0;
+    background-color: white;
+
+  }
+  
+ 
+  .auth-form-container {
+    max-width: 400px;
+    margin: 100px auto; 
+    padding: 30px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    color: #333; 
+  }
+  
+
+  h2 {
+    text-align: center;
+    color: #333; 
+    margin-bottom: 20px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px; 
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #f9f9f9; 
+    color: #333;
+  }
+  
+ 
+  button {
+    width: 100%;
+    padding: 14px;
+    background-color: #f31d1d; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s; 
+  }
+ 
+  button:hover {
+    background-color: #aa3113;
+  }
+  
+ 
+  p {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+  }
+  
+
+  p a {
+    color: #f82821; 
+    text-decoration: none;
+  }
+  
+  p a:hover {
+    text-decoration: underline; 
+  }
+  
+ 
+  .auth-form-container {
+    animation: fadeIn 1s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  
+  
