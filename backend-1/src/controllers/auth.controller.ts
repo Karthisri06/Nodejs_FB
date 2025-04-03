@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import { Users } from "../entity/User";
 import { AppDataSource } from "../data-source";
 
-// Define an extended request type for authentication
 interface AuthenticatedRequest extends Request {
   user?: { id: number; role: string };
 }
@@ -19,17 +18,14 @@ export const registerUser = async (
   try {
     const userRepository = AppDataSource.getRepository(Users);
 
-    // Check if user already exists
     const existingUser = await userRepository.findOne({ where: { email } });
     if (existingUser) {
       res.status(400).json({ message: "User with this email already exists!" });
       return;
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create new user with "student" role by default
     const newUser = userRepository.create({
       name,
       email,
@@ -45,9 +41,7 @@ export const registerUser = async (
   }
 };
 
-/**
- * @desc Login user and generate JWT token
- */
+
 export const loginUser = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
 
