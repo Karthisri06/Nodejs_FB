@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../data-source"; 
-import { User } from "../entity/User"; 
+import { Users} from "../entity/User"; 
 
-const userRepository = AppDataSource.getRepository(User);
+const userRepository = AppDataSource.getRepository(Users);
 export class UserController {
 
   async createUser(req: Request, res: Response) {
     const { name, email }=req.body;
     try {
-      const user = new User();
+      const user = new Users();
       user.name = name;
       user.email = email;
-      const userRepository = AppDataSource.getRepository(User);
+      const userRepository = AppDataSource.getRepository(Users);
 
       await userRepository.save(user);
 
@@ -43,7 +43,7 @@ export class UserController {
     const { name, email } = req.body; 
 
     try {
-      const userRepository = AppDataSource.getRepository(User);
+      const userRepository = AppDataSource.getRepository(Users);
       const user = await userRepository.findOne({where:{id:userId}});
       if (!user) {
        res.send({ message: "User not found" });
@@ -67,7 +67,7 @@ export class UserController {
     const userId = req.params.id;  
 
     try {
-      const userRepository = AppDataSource.getRepository(User);
+      const userRepository = AppDataSource.getRepository(Users);
       
       const user = await userRepository.findOne({ where: { id: +userId } });
       if (!user) {

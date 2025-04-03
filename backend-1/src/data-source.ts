@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { DataSource, Migration } from "typeorm";
-import { User } from "./entity/User"; 
+import { Users } from "./entity/User"; 
 import { BankDetails } from "./entity/seeder";
 
 export const AppDataSource = new DataSource({
@@ -12,7 +12,7 @@ export const AppDataSource = new DataSource({
   database: "test1",
   synchronize: false, 
   logging: true,
-  entities: [User],
+  entities: [Users],
   migrations: [`${process.cwd()}/src/migration/*.ts`],  
 //  subscribers: [], 
 });

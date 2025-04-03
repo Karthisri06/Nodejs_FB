@@ -4,16 +4,15 @@ import axios from 'axios';
 import '../styles/formcomponents.css';
 
 const AuthForm = () => {
-
   const [name, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role] = useState('student'); // Default role
   const [isLogin, setIsLogin] = useState(true);
   const [message, setMessage] = useState('');
 
   const navigate = useNavigate(); 
 
-  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted!");
@@ -21,48 +20,27 @@ const AuthForm = () => {
     try {
       if (isLogin) {
         console.log("Attempting login...", email, password);
-        const response = await axios.get('http://localhost:6000/auth/users')
-        
-          // const url = "http://localhost:6000/auth/users"
-          // try {
-          //   const response = await fetch(url,{
-          //     method:'GET',
-          //     mode:'cors',
-          //     headers:{
-          //       'Access-Control-Allow-Origin':'*',
-          //     }
-          //   });
-          //   if (!response.ok) {
-          //     throw new Error(`Response status: ${response.status}`);
-          //   }
-        
-          //   const json = await response.json();
-          //   console.log(json);
-          // } catch (error) {
-          //   console.error(error);
-          // }
-        console.log("lO?'.g,likmnjkl;",response)
-        // const response = await axios.post('http://localhost:6000/auth/login', { email, password });
+    
+        const response = await axios.post('http://localhost:5002/auth/login', { email, password });
 
-        // console.log("Login successful:", response.data);
-        // localStorage.setItem('token', response.data.token);
+        console.log("Login successful:", response.data);
+        localStorage.setItem('token', response.data.token);
         setMessage('Login successful! Redirecting...');
         
         navigate('/dashboard'); 
       } else {
         console.log("Attempting registration...");
 
-        await axios.post('http://localhost:6000/auth/register', { name, email, password });
+        await axios.post('http://localhost:5002/auth/register', { name, email, password, role });
 
         console.log("Registration successful!");
         setMessage('Registration successful! Please log in.');
         setIsLogin(true);
-      
       }
-    } catch (error : unknown) {
-      console.error("Error during request:",error);
-      let errormessage="Something went wrong. Please try again.";
-      setMessage(errormessage);
+    } catch (error: unknown) {
+      console.error("Error during request:", error);
+      let errorMessage = "Something went wrong. Please try again.";
+      setMessage(errorMessage);
     }
   };
 
@@ -72,13 +50,15 @@ const AuthForm = () => {
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
         {!isLogin && (
-          <input 
-            type="text" 
-            placeholder="Username" 
-            value={name} 
-            onChange={(e) => setUsername(e.target.value)} 
-            required 
-          />
+          <>
+            <input 
+              type="text" 
+              placeholder="Username" 
+              value={name} 
+              onChange={(e) => setUsername(e.target.value)} 
+              required 
+            />
+          </>
         )}
         <input 
           type="email" 
@@ -108,6 +88,7 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
+
 
 
 

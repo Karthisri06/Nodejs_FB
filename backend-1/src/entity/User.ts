@@ -6,7 +6,7 @@ export enum UserRole {
 }
 
 @Entity()
-export class User {
+export class Users {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -18,6 +18,12 @@ export class User {
 
   @Column()
   password: string;
+
+
+  @Column({ default: "student" })  
+  role: "admin" | "student";
+  
+
 
 }
 
