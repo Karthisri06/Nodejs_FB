@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { AppDataSource } from "../data-source"; 
-import { Users} from "../entity/User"; 
+import { Users} from "../Entity/User"; 
 
 const userRepository = AppDataSource.getRepository(Users);
 export class UserController {
 
-  async createUser(req: Request, res: Response) {
+  async createUser(req: Request, res: Response ,next:NextFunction) {
     const { name, email }=req.body;
     try {
       const user = new Users();
@@ -18,14 +18,11 @@ export class UserController {
       res.send(user);
       return ;
     } catch (error) {
-     
-      console.error("Error creating user:", error);
-      res.send({ message: "Internal server error" });
-      return ;
+     next(error)
     }
   }
 
-   async getUsers(req: Request, res: Response) {
+   async getUsers(req: Request, res: Response,next:NextFunction) {
     try {
 
       const users = await userRepository.find();
@@ -33,12 +30,10 @@ export class UserController {
      res.json(users);
      return ;
     } catch (error) {
-      console.error("Error fetching users:", error);
-      res.send({ message: "Internal server error" });
-      return ;
+      next(error)
     }
   }
- async putUser(req: Request, res: Response) {
+ async putUser(req: Request, res: Response, next:NextFunction) {
     const userId = parseInt(req.params.id); 
     const { name, email } = req.body; 
 
@@ -57,13 +52,11 @@ export class UserController {
      res.status(200).json(user);
      return;
     } catch (error) {
-      console.error("Error updating user:", error);
-      res.send({ message: "Error updating user" });
-      return ;
+      next(error)
 }
 
 }
- async deleteUser(req: Request, res: Response) {
+ async deleteUser(req: Request, res: Response,next:NextFunction) {
     const userId = req.params.id;  
 
     try {
@@ -78,9 +71,7 @@ export class UserController {
      res.send({ message: "User successfully deleted" });
      return ;
     } catch (error) {
-      console.error("Error deleting user:", error);
-      res.send({ message: "Error deleting user" });
-      return ;
+      next(error)
     }
   }
 }

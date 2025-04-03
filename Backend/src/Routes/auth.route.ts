@@ -7,8 +7,8 @@ import {
   getAllUsers,
   promoteToAdmin,
   getStudent,
-} from "../controllers/auth.controller";
-import { authenticateJWT, authorizeAdmin } from "../middleware/auth.middleware";
+} from "../Controllers/Auth.controller";
+import { authenticateJWT, authorizeAdmin } from "../Middleware/Auth.middleware";
 
 const router = Router();
 

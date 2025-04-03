@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import AuthForm from "./components/formcomponents";
-import UserDashboard from "./components/dashboard";
-import PrivateRoute from "./components/privateroute";
+import AuthForm from "./Components/Formcomponents";
+import UserDashboard from "./Components/Dashboard";
+import PrivateRoute from "./Components/Privateroute";
 
 function App() {
   return (

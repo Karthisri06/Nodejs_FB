@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { Users } from "../entity/User";
+import { Users } from "../Entity/User";
 import { AppDataSource } from "../data-source";
 
 interface AuthenticatedRequest extends Request {

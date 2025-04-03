@@ -1,7 +1,7 @@
 import { AppDataSource } from "../data-source"; 
-import { BankDetails } from "../entity/seeder"; 
+import { BankDetails } from "../Entity/Seeder"; 
 import { DataSource } from "typeorm";
-import { Users } from "../entity/User";
+import { Users } from "../Entity/User";
 import bcrypt from "bcryptjs";
 
 

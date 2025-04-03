@@ -5,7 +5,8 @@ import { AppDataSource } from "./data-source";
 import { Request, Response } from "express";
 import cors from 'cors';
 // import router from "./routes/route";
-import router from "./routes/auth.route"
+import router from "./Routes/auth.route"
+import { errorHandler } from "./Middleware/ErrorHandler";
 import dotenv from 'dotenv'
 dotenv.config()
 const app = express();
@@ -28,6 +29,7 @@ app.use(cors());
 app.use(express.json());
 // app.use("/user", routers);
 app.use("/auth", router);
+app.use(errorHandler)
 
 const port: number = 5002;
 app.listen(port, async () => {
